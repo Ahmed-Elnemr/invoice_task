@@ -48,7 +48,7 @@
                         <input type="text" class="input"  v-model="itemCart.unit_price"/>
                     </p>
                     <p>
-                        <input  type="text" class="input" v-model="itemCart.quantity" />
+                        <input type="number" min="1"  class="input"  v-model=" itemCart.quantity" />
                     </p>
                     <p v-if="itemCart.quantity">{{ (itemCart.quantity*itemCart.unit_price) }}</p>
                     <p v-else></p>
@@ -123,6 +123,7 @@
 import axios from 'axios';
 import { onMounted ,ref } from 'vue';
 import router from '../../router';
+let defaultNum=ref([1])
 let customers=ref([])
 let customer_id=ref([])
 let form=ref([])

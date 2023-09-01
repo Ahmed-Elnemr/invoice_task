@@ -16,7 +16,7 @@ class InvoiceController extends Controller
     {
         $invoices = Invoice::with('customer')->orderBy('id', 'DESC')->get();
         // dd($invoices);
-        return response([
+        return response()->json([
             'invoices' => $invoices,
         ], 200);
     }
@@ -58,6 +58,23 @@ class InvoiceController extends Controller
             $itemdata['unit_price'] = $item->unit_price;
             InvoiceItem::create($itemdata);
         }
+    }
+###############search
+    public function search_invoice(Request $request)
+    {
+        $search = $request->get('s');
+        // if ($search != null) {
+            $invoices = Invoice::with('customer')
+                ->where('id', 'LIKE', "%$search%")
+                // ->orWhere('customer.name', 'LIKE', "%$search%")
+                ->get();
+
+            return response()->json([
+                'invoices' => $invoices,
+            ], 200);
+        // } else {
+        //     return $this->get_all_invoice();
+        // }
     }
 
     /**

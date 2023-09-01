@@ -17,8 +17,7 @@ class CustomerFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'Name Of Category' . rand(10, 500),
-            'unit_price' => mt_rand(100, 1000)
+            'name' => 'Customer ' . rand(1, 5),
         ];
     }
 }

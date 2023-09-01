@@ -1,6 +1,6 @@
 
 <script setup>
-
+import axios from 'axios';
 
 import { onMounted, ref } from "vue"
 
@@ -8,7 +8,7 @@ import { useRouter } from 'vue-router'
 const router =useRouter()
 
 
-let invoices = ref([])
+let invoices = ref([]);
 
 let searchInvoice = ref([])
 
@@ -18,14 +18,14 @@ onMounted(async () => {
 const getInvoices = async () => {
     let response = await axios.get("/api/get_all_invoice");
     // console.log('response', response)
-    console.log('invoices', response.data.invoices)
     invoices.value = response.data.invoices;
+    console.log('invoices', response.data.invoices)
 }
-// const search =async ()=>{
-//     let response=  await axios.get('/api/search_invoice?s='+searchInvoice.value);
-//     console.log('response', response.data.invoices)
-//     invoices.value=response.data.invoices
-// }
+const search =async ()=>{
+    let response=  await axios.get('/api/search_invoice?s='+searchInvoice.value);
+    // console.log('response', response.data.invoices)
+    invoices.value=response.data.invoices
+}
 
 const newInvoice = async ()=>{
     let form =await axios.get("/api/create_invoice");
@@ -39,7 +39,7 @@ const newInvoice = async ()=>{
     <div class="container">
 
         <!--==================== INVOICE LIST ====================-->
-        <div class="invoices">
+        <div class="invoices " >
 
             <div class="card__header">
                 <div>
@@ -81,7 +81,7 @@ const newInvoice = async ()=>{
                     </div>
                     <div class="relative">
                         <i class="table--search--input--icon fas fa-search "></i>
-                        <input class="table--search--input" type="text" placeholder="Search invoice" v-model="searchInvoice" @keyup="search()">
+                        <input class="table--search--input" type="text" placeholder="Search By ID" v-model="searchInvoice" @keyup="search()">
                     </div>
                 </div>
 
@@ -97,7 +97,7 @@ const newInvoice = async ()=>{
                     <div class="table--items" v-for="item in invoices" :key="item.id">
                         <a href="#" class="table--items--transactionId">#{{ item.id }}</a>
                         <p>{{ item.date }}</p>
-                        <div class="" v-if="item.customer">
+                        <div class="" v-if="item.customer.name">
                             <p>{{ item.customer.name }}</p>
                         </div>
                         <div class="" v-else>

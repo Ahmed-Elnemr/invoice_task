@@ -22,7 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 ## route for view (index.vue )
-Route::post('get_all_invoice', [InvoiceController::class, 'index']);
+Route::get('get_all_invoice', [InvoiceController::class, 'index']);
+Route::get('search_invoice', [InvoiceController::class, 'search_invoice']);
 ## route for view (new.vue )
 Route::get('get_all_customers', [CustomerController::class, 'index']);
 Route::get('create_invoice', [InvoiceController::class, 'create_invoice']);
