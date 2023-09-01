@@ -58,7 +58,7 @@
                 </div>
                 <div style="padding: 10px 30px !important">
                     <button class="btn btn-sm btn__open--modal" @click="openModal()">
-                        Add New Category
+                        Add New Category +
                     </button>
                 </div>
             </div>
@@ -94,8 +94,8 @@
                                 <span>{{ i+1 }}</span><span>-</span>
                                 <a href="#">  {{ item.name }}</a>
                                 <span>   &#160;&#160;&#160;&#160; &#160;&#160;&#160;&#160;</span>
-                                <button @click="addCart(item)">
-                                    +
+                                <button type="button" class="btn btn-primary" @click="addCart(item)">
+                                  Add  +
                                 </button>
 
                                 <span><hr></span>
