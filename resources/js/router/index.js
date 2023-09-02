@@ -4,7 +4,7 @@ import NewInvoice from '@/components/invoices/new.vue';
 import notFound from '@/components/notFound.vue';
 const routes =[
     {
-        path: '/vue/index',
+        path: '/invoice/index',
         component:invoiceIndex
     },
     {

@@ -48,7 +48,7 @@
                         <input type="text" class="input"  v-model="itemCart.unit_price"/>
                     </p>
                     <p>
-                        <input type="number" min="1"  class="input"  v-model=" itemCart.quantity" />
+                        <input  type="number" min="1"  class="input"  v-model=" itemCart.quantity" />
                     </p>
                     <p v-if="itemCart.quantity">{{ (itemCart.quantity*itemCart.unit_price) }}</p>
                     <p v-else></p>
@@ -218,7 +218,7 @@ const onSave =()=>{
 
         axios.post('/api/add_invoice',formData)
         listCart.value=[]
-        router.push('/vue/index')
+        router.push('/invoice/index')
     }
 }
 

@@ -15,18 +15,30 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified',
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('index');
+    })->name('dashboard');
+
+
+######### crud using livewire ########
+Route::get('category', function () {
+    return view('invoice/category');
+})->name('category');
+
+
+Route::get('customer', function () {
+    return view('invoice/customer');
+})->name('customer');
+
+###### end crud livewire ##########
 
 Route::get('/{page}', [AdminController::class,'index']);
 
@@ -34,3 +46,6 @@ Route::get('/{page}', [AdminController::class,'index']);
 Route::get('{pathMatch}', function () {
     return view('vue-app');
 })->where('pathMatch',".*");
+
+
+});
